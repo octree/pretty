@@ -15,7 +15,7 @@ import Foundation
 /// - Returns: [name: dads]
 private func whoIsYourDad(_ dependency: [String: [String]]) -> [String: [String]] {
     
-    var new = [String: [String]]()
+    var dadsMap = [String: [String]]()
     for (key, sons) in dependency {
         
         for name in sons {
@@ -26,7 +26,7 @@ private func whoIsYourDad(_ dependency: [String: [String]]) -> [String: [String]
         }
     }
     
-    return new
+    return dadsMap
 }
 
 
