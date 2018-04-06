@@ -19,7 +19,7 @@
 		C2756E1920765CBB00FF160B /* Hue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E0620765CBA00FF160B /* Hue.swift */; };
 		C2756E1E20765CBB00FF160B /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E0E20765CBB00FF160B /* Curry.swift */; };
 		C2756E1F20765CBB00FF160B /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E0F20765CBB00FF160B /* Runes.swift */; };
-		C2756E2020765CBB00FF160B /* PodfileLockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E1020765CBB00FF160B /* PodfileLockParser.swift */; };
+		C2756E2020765CBB00FF160B /* PodLockFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E1020765CBB00FF160B /* PodLockFileParser.swift */; };
 		C2756E2120765CBB00FF160B /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E1120765CBB00FF160B /* Parser.swift */; };
 		C2756E2920765D4E00FF160B /* RelationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E2620765D4E00FF160B /* RelationView.swift */; };
 		C2756E2A20765D4E00FF160B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E2720765D4E00FF160B /* Array+Extension.swift */; };
@@ -48,7 +48,7 @@
 		C2756E0720765CBA00FF160B /* RandomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomColor.h; sourceTree = "<group>"; };
 		C2756E0E20765CBB00FF160B /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
 		C2756E0F20765CBB00FF160B /* Runes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runes.swift; sourceTree = "<group>"; };
-		C2756E1020765CBB00FF160B /* PodfileLockParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodfileLockParser.swift; sourceTree = "<group>"; };
+		C2756E1020765CBB00FF160B /* PodLockFileParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodLockFileParser.swift; sourceTree = "<group>"; };
 		C2756E1120765CBB00FF160B /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C2756E2620765D4E00FF160B /* RelationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationView.swift; sourceTree = "<group>"; };
 		C2756E2720765D4E00FF160B /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				C2756E0E20765CBB00FF160B /* Curry.swift */,
 				C2756E0F20765CBB00FF160B /* Runes.swift */,
 				C2756E1120765CBB00FF160B /* Parser.swift */,
-				C2756E1020765CBB00FF160B /* PodfileLockParser.swift */,
+				C2756E1020765CBB00FF160B /* PodLockFileParser.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 				C2756E2120765CBB00FF160B /* Parser.swift in Sources */,
 				C2756DF520765C8100FF160B /* ViewController.swift in Sources */,
 				C2756DF320765C8100FF160B /* AppDelegate.swift in Sources */,
-				C2756E2020765CBB00FF160B /* PodfileLockParser.swift in Sources */,
+				C2756E2020765CBB00FF160B /* PodLockFileParser.swift in Sources */,
 				C2D8BBFD2076A4960093FC8E /* DependencySort.swift in Sources */,
 				C2D8BC04207720FD0093FC8E /* NSRect+Dependency.swift in Sources */,
 			);

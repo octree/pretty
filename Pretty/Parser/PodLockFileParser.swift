@@ -1,6 +1,6 @@
 //
-//  PodfileLockParser.swift
-//  MacApp
+//  PodLockFileParser.swift
+//  解析 Podfile.lock 的 PODS: 字段，获取 pod 间的依赖关系
 //
 //  Created by Octree on 2018/4/5.
 //  Copyright © 2018年 Octree. All rights reserved.
