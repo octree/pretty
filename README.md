@@ -16,6 +16,10 @@
 
 ![demo.gif](./Images/demo.gif)
 
+## How To Use
+
+> Dowload & Build
+
 
 ## TODO
 
