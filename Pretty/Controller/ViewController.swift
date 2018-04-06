@@ -6,11 +6,10 @@
 //  Copyright © 2018年 Octree. All rights reserved.
 //
 
-//  新的分层算法
+//  新的分层规则
 //  没有被依赖的 depth 为 0
 //  只被 depth 为 0 的依赖，则 depth 为 1
 //  依次类推
-
 
 import Cocoa
 
