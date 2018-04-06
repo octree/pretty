@@ -73,21 +73,6 @@ extension Parser {
             return ((first, second), newReminder)
         }
     }
-    
-    var ignoreSpace: Parser<Result> {
-        
-        return Parser<Result> {
-            input in
-            
-            var reminder = input
-            
-            while reminder.first == " " {
-                reminder = reminder.dropFirst()
-            }
-            
-            return self.parse(reminder)
-        }
-    }
 }
 
 
