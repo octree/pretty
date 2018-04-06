@@ -57,7 +57,6 @@ private let dependencyItems = dependencyItem.many.map { x -> [String : [String]]
     var map = [String: [String]]()
     
     x.forEach { map[$0.0] = $0.1 }
-    
     return map
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C253827D207681E3008BDB09 /* DependencyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253827C207681E3008BDB09 /* DependencyNode.swift */; };
-		C2538280207682A3008BDB09 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253827F207682A3008BDB09 /* Helper.swift */; };
 		C2538282207685A5008BDB09 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2538281207685A5008BDB09 /* HexColors.swift */; };
 		C2756DF320765C8100FF160B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756DF220765C8100FF160B /* AppDelegate.swift */; };
 		C2756DF520765C8100FF160B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756DF420765C8100FF160B /* ViewController.swift */; };
@@ -25,11 +24,15 @@
 		C2756E2920765D4E00FF160B /* RelationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E2620765D4E00FF160B /* RelationView.swift */; };
 		C2756E2A20765D4E00FF160B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E2720765D4E00FF160B /* Array+Extension.swift */; };
 		C2756E2B20765D4E00FF160B /* RelationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756E2820765D4E00FF160B /* RelationItemView.swift */; };
+		C2D8BBFD2076A4960093FC8E /* DependencySort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D8BBFC2076A4960093FC8E /* DependencySort.swift */; };
+		C2D8BC002077201E0093FC8E /* PrettyRelation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D8BBFF2077201E0093FC8E /* PrettyRelation+Extension.swift */; };
+		C2D8BC02207720F30093FC8E /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D8BC01207720F30093FC8E /* NSPoint+Extension.swift */; };
+		C2D8BC04207720FD0093FC8E /* NSRect+Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D8BC03207720FD0093FC8E /* NSRect+Dependency.swift */; };
+		C2D8BC06207721230093FC8E /* PrettyRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D8BC05207721230093FC8E /* PrettyRelation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C253827C207681E3008BDB09 /* DependencyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyNode.swift; sourceTree = "<group>"; };
-		C253827F207682A3008BDB09 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		C2538281207685A5008BDB09 /* HexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColors.swift; sourceTree = "<group>"; };
 		C2756DEF20765C8100FF160B /* Pretty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pretty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2756DF220765C8100FF160B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +53,11 @@
 		C2756E2620765D4E00FF160B /* RelationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationView.swift; sourceTree = "<group>"; };
 		C2756E2720765D4E00FF160B /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		C2756E2820765D4E00FF160B /* RelationItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationItemView.swift; sourceTree = "<group>"; };
+		C2D8BBFC2076A4960093FC8E /* DependencySort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencySort.swift; sourceTree = "<group>"; };
+		C2D8BBFF2077201E0093FC8E /* PrettyRelation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrettyRelation+Extension.swift"; sourceTree = "<group>"; };
+		C2D8BC01207720F30093FC8E /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
+		C2D8BC03207720FD0093FC8E /* NSRect+Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRect+Dependency.swift"; sourceTree = "<group>"; };
+		C2D8BC05207721230093FC8E /* PrettyRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyRelation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				C253827C207681E3008BDB09 /* DependencyNode.swift */,
+				C2D8BC05207721230093FC8E /* PrettyRelation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -74,8 +83,8 @@
 		C253827E2076824B008BDB09 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C253827F207682A3008BDB09 /* Helper.swift */,
 				C2538281207685A5008BDB09 /* HexColors.swift */,
+				C2D8BBFC2076A4960093FC8E /* DependencySort.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -99,17 +108,15 @@
 		C2756DF120765C8100FF160B /* Pretty */ = {
 			isa = PBXGroup;
 			children = (
+				C2D8BC09207722260093FC8E /* Controller */,
+				C2D8BC08207722160093FC8E /* Resource */,
+				C2D8BBFE20771FF80093FC8E /* Extension */,
 				C2756E0220765CBA00FF160B /* RandomColors */,
+				C2756E0D20765CBB00FF160B /* Parser */,
 				C253827E2076824B008BDB09 /* Utils */,
 				C253827B207681CA008BDB09 /* Model */,
-				C2756E0D20765CBB00FF160B /* Parser */,
-				C2756E2720765D4E00FF160B /* Array+Extension.swift */,
-				C2756E2820765D4E00FF160B /* RelationItemView.swift */,
-				C2756E2620765D4E00FF160B /* RelationView.swift */,
+				C2D8BC07207721D90093FC8E /* View */,
 				C2756DF220765C8100FF160B /* AppDelegate.swift */,
-				C2756DF420765C8100FF160B /* ViewController.swift */,
-				C2756DF620765C8200FF160B /* Assets.xcassets */,
-				C2756DF820765C8200FF160B /* Main.storyboard */,
 				C2756DFB20765C8200FF160B /* Info.plist */,
 				C2756DFC20765C8200FF160B /* Pretty.entitlements */,
 			);
@@ -137,6 +144,43 @@
 				C2756E1020765CBB00FF160B /* PodfileLockParser.swift */,
 			);
 			path = Parser;
+			sourceTree = "<group>";
+		};
+		C2D8BBFE20771FF80093FC8E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C2756E2720765D4E00FF160B /* Array+Extension.swift */,
+				C2D8BBFF2077201E0093FC8E /* PrettyRelation+Extension.swift */,
+				C2D8BC01207720F30093FC8E /* NSPoint+Extension.swift */,
+				C2D8BC03207720FD0093FC8E /* NSRect+Dependency.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C2D8BC07207721D90093FC8E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2756E2820765D4E00FF160B /* RelationItemView.swift */,
+				C2756E2620765D4E00FF160B /* RelationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2D8BC08207722160093FC8E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C2756DF620765C8200FF160B /* Assets.xcassets */,
+				C2756DF820765C8200FF160B /* Main.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C2D8BC09207722260093FC8E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C2756DF420765C8100FF160B /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,9 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2756E1E20765CBB00FF160B /* Curry.swift in Sources */,
+				C2D8BC06207721230093FC8E /* PrettyRelation.swift in Sources */,
 				C2538282207685A5008BDB09 /* HexColors.swift in Sources */,
 				C2756E1720765CBB00FF160B /* RandomColor.swift in Sources */,
-				C2538280207682A3008BDB09 /* Helper.swift in Sources */,
+				C2D8BC02207720F30093FC8E /* NSPoint+Extension.swift in Sources */,
 				C253827D207681E3008BDB09 /* DependencyNode.swift in Sources */,
 				C2756E1820765CBB00FF160B /* ColorDefinition.swift in Sources */,
 				C2756E2B20765D4E00FF160B /* RelationItemView.swift in Sources */,
@@ -220,11 +265,14 @@
 				C2756E2920765D4E00FF160B /* RelationView.swift in Sources */,
 				C2756E1F20765CBB00FF160B /* Runes.swift in Sources */,
 				C2756E1920765CBB00FF160B /* Hue.swift in Sources */,
+				C2D8BC002077201E0093FC8E /* PrettyRelation+Extension.swift in Sources */,
 				C2756E1620765CBB00FF160B /* Luminosity.swift in Sources */,
 				C2756E2120765CBB00FF160B /* Parser.swift in Sources */,
 				C2756DF520765C8100FF160B /* ViewController.swift in Sources */,
 				C2756DF320765C8100FF160B /* AppDelegate.swift in Sources */,
 				C2756E2020765CBB00FF160B /* PodfileLockParser.swift in Sources */,
+				C2D8BBFD2076A4960093FC8E /* DependencySort.swift in Sources */,
+				C2D8BC04207720FD0093FC8E /* NSRect+Dependency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

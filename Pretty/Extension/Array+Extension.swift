@@ -26,24 +26,18 @@ extension Array {
 }
 
 
-extension NSPoint {
+extension Array where Element: Equatable {
     
-    func minus(_ other: NSPoint) -> NSPoint {
+    func contains(_ other: [Element]) -> Bool {
         
-        return NSPoint(x: x - other.x, y: y - other.y)
-    }
-    
-    func offset(_ p: NSPoint) -> NSPoint {
+        for elt in other {
+            if !contains(elt) {
+                
+                return false
+            }
+        }
         
-        return NSPoint(x: x + p.x, y: y + p.y)
+        return true
     }
 }
 
-
-extension NSRect {
-    
-    func offset(_ p: NSPoint) -> NSRect {
-        
-        return NSRect(origin: origin.offset(p), size: size)
-    }
-}

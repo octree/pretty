@@ -70,6 +70,7 @@ class RelationView: NSView {
         }
         
         currentDraggingItem = nil
+        updateLine(relate: item.text)
     }
 
     
@@ -170,6 +171,16 @@ class RelationView: NSView {
             if components.contains(name) {
                 
                 value.path = linePath(parent: components.first!, son: components.last!)
+
+                if components.first == currentDraggingItem?.text {
+                    
+                    value.strokeColor = NSColor.red.cgColor
+                } else if (components.last == currentDraggingItem?.text) {
+                    
+                    value.strokeColor = NSColor.blue.cgColor
+                } else {
+                    value.strokeColor = itemMap[components.first!]?.backgroundColor?.cgColor
+                }
             }
         }
         
