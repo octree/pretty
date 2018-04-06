@@ -112,6 +112,17 @@ func character(matching condition: @escaping (Character) -> Bool) -> Parser<Char
     })
 }
 
+func >>-<A, B>(lhs: @escaping (A) -> Parser<B>, rhs: Parser<A>) -> Parser<B> {
+    
+    return Parser<B> {
+        input in
+        guard let rt = rhs.parse(input) else {
+            return nil
+        }
+        
+        return lhs(rt.0).parse(rt.1)
+    }
+}
 
 func <*><A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
     

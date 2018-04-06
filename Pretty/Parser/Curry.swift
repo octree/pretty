@@ -4,7 +4,7 @@
 //
 //  Created by Octree on 2016/10/28.
 //  Copyright © 2016年 Octree. All rights reserved.
-//  柯里化
+//  
 
 import Foundation
 
