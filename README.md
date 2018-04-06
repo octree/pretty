@@ -1,6 +1,6 @@
 # Pretty
 
-根据 Podfile.lock 分析项目依赖。
+一个根据 Podfile.lock 生成依赖图的 Mac App。
 
 
 > 和节点颜色相同的线连接子节点。
