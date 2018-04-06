@@ -20,9 +20,9 @@ private func whoIsYourDad(_ dependency: [String: [String]]) -> [String: [String]
         
         for name in sons {
             
-            var parents = new[name] ?? []
+            var parents = dadsMap[name] ?? []
             parents.append(key)
-            new[name] = parents
+            dadsMap[name] = parents
         }
     }
     
