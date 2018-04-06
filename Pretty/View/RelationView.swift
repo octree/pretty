@@ -11,6 +11,7 @@ import Cocoa
 
 class RelationView: NSView {
     
+    //    MARK: Accessor
     
     /// "parent|daughter": Layer
     private var lineMap = [String: CAShapeLayer]()
@@ -27,10 +28,18 @@ class RelationView: NSView {
         }
     }
     
+    //    MARK: Life Cycle
+    
     init() {
         super.init(frame: NSRect())
     }
     
+    required init?(coder decoder: NSCoder) {
+        super.init(coder: decoder)
+    }
+    
+    
+    //    MARK: Public Method
     
     override func mouseDown(with event: NSEvent) {
      
@@ -74,6 +83,38 @@ class RelationView: NSView {
     }
 
     
+    //    MARK: Private Method
+    
+    private func setUp() {
+        
+        clear()
+        let superSize = superview?.frame.size ?? CGSize()
+        
+        let size = prettyRelation.size
+        
+        frame = NSRect(x: 0, y: 0, width: max(size.width, superSize.width),
+                       height: max(superSize.height, size.height))
+        
+        prettyRelation.width = Int(frame.size.width)
+        prettyRelation.height = Int(frame.size.height)
+        
+        wantsLayer = true
+        layer?.backgroundColor = NSColor.white.cgColor
+        
+        setupItems()
+        setupLines()
+        
+        lineMap.forEach {
+            layer?.addSublayer($0.1)
+        }
+        
+        itemMap.forEach {
+            addSubview($0.1)
+        }
+    }
+    
+    
+    /// 创建 RelationItemViews
     private func setupItems() {
     
         prettyRelation.nodes.forEach { node in
@@ -85,6 +126,8 @@ class RelationView: NSView {
         }
     }
     
+    
+    /// 创建 Node 之间的连接线
     private func setupLines() {
         
         prettyRelation.nodes.forEach { parent in
@@ -112,34 +155,11 @@ class RelationView: NSView {
         layer?.sublayers?.forEach { $0.removeFromSuperlayer() }
     }
     
-    private func setUp() {
-        
-        clear()
-        let superSize = superview?.frame.size ?? CGSize()
-        
-        let size = prettyRelation.size
-        
-        frame = NSRect(x: 0, y: 0, width: max(size.width * 2, superSize.width),
-                    height: max(superSize.height, size.height))
-        prettyRelation.width = Int(frame.size.width)
-        prettyRelation.height = Int(frame.size.height)
-        
-        wantsLayer = true
-        layer?.backgroundColor = NSColor.white.cgColor
-        
-        setupItems()
-        setupLines()
-        
-        lineMap.forEach {
-            layer?.addSublayer($0.1)
-        }
-        
-        itemMap.forEach {
-            addSubview($0.1)
-        }
-    }
     
-    
+    /// 根据 Position 找到对应位置的 RelationItemView
+    ///
+    /// - Parameter position: NSPoint
+    /// - Returns: RelationItemView or nil
     private func findItemLocate(in position: NSPoint) -> RelationItemView? {
         
         for (_, item) in itemMap {
@@ -152,6 +172,13 @@ class RelationView: NSView {
         return nil
     }
     
+    
+    /// 根据父节点和子节点的名称创建连接线的 Path
+    ///
+    /// - Parameters:
+    ///   - parent: 父节点名称
+    ///   - son: 子节点名称
+    /// - Returns: CGPath
     private func linePath(parent: String, son: String) -> CGPath {
         
         let parentItem = itemMap[parent]!
@@ -163,6 +190,10 @@ class RelationView: NSView {
         return path
     }
     
+    
+    /// 更新和某个节点相关的线
+    ///
+    /// - Parameter name: 节点名称
     private func updateLine(relate name: String) {
         
         for (key, value) in lineMap {
@@ -184,10 +215,6 @@ class RelationView: NSView {
             }
         }
         
-    }
-    
-    required init?(coder decoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }
