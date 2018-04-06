@@ -46,6 +46,7 @@ class ViewController: NSViewController {
     
     func updateRelationView(filename: String) {
         
+        view.window?.title = filename
         if filename.hasSuffix(".lock") {
             updateWithLockFile(filename: filename)
         } else {
