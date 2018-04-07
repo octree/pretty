@@ -35,6 +35,22 @@ func character(_ ch: Character) -> Parser<Character> {
     }
 }
 
+
+/// Parse Specific String
+///
+/// - Parameter string: expected string
+/// - Returns: Parser<String>
+func string(_ string: String) -> Parser<String> {
+    
+    return Parser { input in
+        
+        guard input.hasPrefix(string) else {
+            return nil
+        }
+        return (string, input.dropFirst(string.count))
+    }
+}
+
 func dependencyCombine(name: String, sons: [String]?) -> (String, [String]) {
     
     return (name, sons ?? [])
@@ -59,7 +75,7 @@ private let leftParent = character("(")
 private let rightParent = character(")")
 
 /// Just Parse `PODS:` 😅
-private let pods = character("P").followed(by: character("O")).followed(by: character("D")).followed(by: character("S")).followed(by: colon).followed(by: newLine)
+private let pods = string("PODS:\n")
 
 private let word = character {
     !CharacterSet.whitespacesAndNewlines.contains($0) }.many.map { String($0) }
