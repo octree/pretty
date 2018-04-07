@@ -21,7 +21,7 @@ private func C(_ a: Float, b: Float) -> Float {
 }
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html
-func CIE2000SquaredColorDifference(
+public func CIE2000SquaredColorDifference(
     _ kL: Float = 1,
     kC: Float = 1,
     kH: Float = 1
