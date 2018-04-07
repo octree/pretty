@@ -21,7 +21,7 @@ class RelationView: NSView {
 
     private var lastDragPosition = NSPoint(x: 0, y: 0)
     
-    var prettyRelation = PrettyRelation(width: 0, height: 0, nodes: []) {
+    var prettyRelation = PrettyRelation(nodes: []) {
         
         didSet {
             setUp()
@@ -90,13 +90,10 @@ class RelationView: NSView {
         clear()
         let superSize = superview?.frame.size ?? CGSize()
         
-        let size = prettyRelation.size
+        let size = prettyRelation.preferredSize
         
         frame = NSRect(x: 0, y: 0, width: max(size.width, superSize.width),
                        height: max(superSize.height, size.height))
-        
-        prettyRelation.width = Int(frame.size.width)
-        prettyRelation.height = Int(frame.size.height)
         
         wantsLayer = true
         layer?.backgroundColor = NSColor.white.cgColor

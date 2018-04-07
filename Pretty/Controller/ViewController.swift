@@ -34,6 +34,17 @@ class ViewController: NSViewController {
         }
     }
     
+    override func viewDidLayout() {
+        super.viewDidLayout()
+        
+        let frame = relationView.frame
+        guard !frame.equalTo(CGRect()) else {
+            return
+        }
+        
+        
+    }
+    
     
     @objc func handleOpenFile(notification: Notification) {
         

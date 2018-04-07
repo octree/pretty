@@ -10,24 +10,17 @@ import Foundation
 
 class PrettyRelation: Codable {
     
-    var width: Int
-    var height: Int
+//    var width: Int
+//    var height: Int
     var nodes: [DependencyNode]
     
-    init(width: Int, height: Int, nodes: [DependencyNode]) {
+    init(nodes: [DependencyNode]) {
         
-        self.width = width
-        self.height = height
         self.nodes = nodes
     }
 }
 
 extension PrettyRelation {
-    
-    var size: NSSize {
-        
-        return NSSize(width: width, height: height)
-    }
     
     func jsonData() throws -> Data  {
         

@@ -62,9 +62,21 @@ extension PrettyRelation {
     convenience init(dependency: [String: [String]]) {
         
         let groups = Array(groupPodDependency(dependency).reversed())
-        let size = preferredSize(groups)
-        self.init(width: Int(size.width),
-                  height: Int(size.height),
-                  nodes: nodesForGroups(groups))
+//        let size = preferredSize(groups)
+        self.init(nodes: nodesForGroups(groups))
+    }
+}
+
+
+extension PrettyRelation {
+    
+    var preferredSize: CGSize {
+        
+        let (width, height) = nodes.reduce((0, 0)) { (result, node) in
+            
+            return (max(result.0, node.frame.x + node.frame.width),
+                    max(result.1, node.frame.y + node.frame.height))
+        }
+        return CGSize(width: width + kRelationViewPadding, height: height + kRelationViewPadding)
     }
 }
