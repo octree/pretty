@@ -37,12 +37,16 @@ class ViewController: NSViewController {
     override func viewDidLayout() {
         super.viewDidLayout()
         
-        let frame = relationView.frame
-        guard !frame.equalTo(CGRect()) else {
+        guard !relationView.frame.equalTo(CGRect()) else {
             return
         }
         
-        
+        let size = relationView.prettyRelation.preferredSize
+        let parentSize = scrollView.frame.size
+        relationView.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: max(size.width, parentSize.width),
+                                    height: max(size.height, parentSize.height))
     }
     
     
