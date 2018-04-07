@@ -27,10 +27,12 @@ extension OCTColor {
         let blue = UnsafeMutablePointer<CGFloat>.allocate(capacity: 1)
         let alpha = UnsafeMutablePointer<CGFloat>.allocate(capacity: 1)
         
-        getRed(red, green: green, blue: blue, alpha: alpha)
+        var color = usingColorSpace(.deviceRGB)!
+        color.getRed(red, green: green, blue: blue, alpha: alpha)
         let lab1 = GLKVector3Make(Float(red[0]), Float(green[0]), Float(blue[0]))
         
-        other.getRed(red, green: green, blue: blue, alpha: alpha)
+        color = other.usingColorSpace(.deviceRGB)!
+        color.getRed(red, green: green, blue: blue, alpha: alpha)
         let lab2 = GLKVector3Make(Float(red[0]), Float(green[0]), Float(blue[0]))
         
         return CIE2000SquaredColorDifference(1, kC: 1, kH: 1)(lab1, lab2)

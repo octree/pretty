@@ -117,7 +117,14 @@ class RelationView: NSView {
         prettyRelation.nodes.forEach { node in
             
             let item = RelationItemView(frame: node.frame.rect, text: node.name)
-            item.backgroundColor = NSColor(node.color)
+            let color = NSColor(node.color)
+            item.backgroundColor = color
+            
+            if (color?.colorDifference(.white) ?? 0) < 0.1 {
+
+                item.label.textColor = NSColor(white: 0.2, alpha: 1.0)
+            }
+            
             itemMap[node.name] = item
             nodeMap[node.name] = node
         }

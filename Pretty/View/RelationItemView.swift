@@ -15,7 +15,7 @@ class RelationItemView: NSView {
             label.stringValue = text
         }
     }
-    var label: NSTextField = {
+    private(set) var label: NSTextField = {
         let textfield = NSTextField()
         textfield.isEditable = false
         textfield.textColor = .white
