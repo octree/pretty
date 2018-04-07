@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C239289320791B980071E305 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C239289220791B980071E305 /* ColorDifference.swift */; };
+		C239289520791D410071E305 /* Color+Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C239289420791D410071E305 /* Color+Difference.swift */; };
+		C239289720791F4C0071E305 /* ColorSpaceConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C239289620791F4C0071E305 /* ColorSpaceConversion.swift */; };
 		C253827D207681E3008BDB09 /* DependencyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C253827C207681E3008BDB09 /* DependencyNode.swift */; };
 		C2538282207685A5008BDB09 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2538281207685A5008BDB09 /* HexColors.swift */; };
 		C26572C220786509005650E8 /* CharacterSet+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26572C120786509005650E8 /* CharacterSet+Extension.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C239289220791B980071E305 /* ColorDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
+		C239289420791D410071E305 /* Color+Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Difference.swift"; sourceTree = "<group>"; };
+		C239289620791F4C0071E305 /* ColorSpaceConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSpaceConversion.swift; sourceTree = "<group>"; };
 		C253827C207681E3008BDB09 /* DependencyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyNode.swift; sourceTree = "<group>"; };
 		C2538281207685A5008BDB09 /* HexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColors.swift; sourceTree = "<group>"; };
 		C26572C120786509005650E8 /* CharacterSet+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extension.swift"; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 			children = (
 				C2538281207685A5008BDB09 /* HexColors.swift */,
 				C2D8BBFC2076A4960093FC8E /* DependencySort.swift */,
+				C239289220791B980071E305 /* ColorDifference.swift */,
+				C239289620791F4C0071E305 /* ColorSpaceConversion.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 				C2D8BC01207720F30093FC8E /* NSPoint+Extension.swift */,
 				C2D8BC03207720FD0093FC8E /* NSRect+Dependency.swift */,
 				C26572C120786509005650E8 /* CharacterSet+Extension.swift */,
+				C239289420791D410071E305 /* Color+Difference.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -263,7 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2756E1E20765CBB00FF160B /* Curry.swift in Sources */,
+				C239289520791D410071E305 /* Color+Difference.swift in Sources */,
 				C26572C220786509005650E8 /* CharacterSet+Extension.swift in Sources */,
+				C239289320791B980071E305 /* ColorDifference.swift in Sources */,
 				C2D8BC06207721230093FC8E /* PrettyRelation.swift in Sources */,
 				C2538282207685A5008BDB09 /* HexColors.swift in Sources */,
 				C26572C620786545005650E8 /* Parser+Runes.swift in Sources */,
@@ -278,6 +289,7 @@
 				C2756E1F20765CBB00FF160B /* Runes.swift in Sources */,
 				C2756E1920765CBB00FF160B /* Hue.swift in Sources */,
 				C2D8BC002077201E0093FC8E /* PrettyRelation+Extension.swift in Sources */,
+				C239289720791F4C0071E305 /* ColorSpaceConversion.swift in Sources */,
 				C2756E1620765CBB00FF160B /* Luminosity.swift in Sources */,
 				C2756E2120765CBB00FF160B /* Parser.swift in Sources */,
 				C2756DF520765C8100FF160B /* ViewController.swift in Sources */,
