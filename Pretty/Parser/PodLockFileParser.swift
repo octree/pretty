@@ -9,6 +9,10 @@
 import Foundation
 
 
+/// Just parse one character
+///
+/// - Parameter condition: condition
+/// - Returns: Parser<Character>
 func character(matching condition: @escaping (Character) -> Bool) -> Parser<Character> {
     
     return Parser(parse: { input in
@@ -19,6 +23,11 @@ func character(matching condition: @escaping (Character) -> Bool) -> Parser<Char
     })
 }
 
+
+/// parse one specific character
+///
+/// - Parameter ch: character
+/// - Returns: Parser<Character>
 func character(_ ch: Character) -> Parser<Character> {
     
     return character {
