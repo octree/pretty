@@ -15,12 +15,3 @@ struct Parser<Result> {
     let parse: (Stream) -> (Result, Stream)?
 }
 
-func character(matching condition: @escaping (Character) -> Bool) -> Parser<Character> {
-    
-    return Parser(parse: { input in
-        guard let char = input.first, condition(char) else {
-            return nil
-        }
-        return (char, input.dropFirst())
-    })
-}

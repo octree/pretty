@@ -8,6 +8,17 @@
 
 import Foundation
 
+
+func character(matching condition: @escaping (Character) -> Bool) -> Parser<Character> {
+    
+    return Parser(parse: { input in
+        guard let char = input.first, condition(char) else {
+            return nil
+        }
+        return (char, input.dropFirst())
+    })
+}
+
 func character(_ ch: Character) -> Parser<Character> {
     
     return character {
@@ -38,12 +49,15 @@ private let hyphon = character("-")
 private let leftParent = character("(")
 private let rightParent = character(")")
 
+/// Just Parse `PODS:` 😅
 private let pods = character("P").followed(by: character("O")).followed(by: character("D")).followed(by: character("S")).followed(by: colon).followed(by: newLine)
 
 private let word = character {
     !CharacterSet.whitespacesAndNewlines.contains($0) }.many.map { String($0) }
 
+/// Parse Version Part: `(= 1.2.2)` or `(1.2.3)` or `(whatever)`
 private let version = leftParent.followed(by: character { $0 != ")" }.many).followed(by: rightParent)
+
 
 private let item = (indentation *> hyphon *> space *> word)
     <* (space.followed(by: version)).optional <* colon.optional <* newLine
@@ -60,4 +74,9 @@ private let dependencyItems = dependencyItem.many.map { x -> [String : [String]]
     return map
 }
 
+
+/// 解析 Podfile.lock
+/// 解析成功会返回 [String: [String]]
+/// key: Pod Name
+/// value: 该 Pod 依赖的其他 Pods
 let PodLockFileParser = pods *> dependencyItems

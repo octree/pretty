@@ -27,6 +27,7 @@ extension Parser {
         }
     }
     
+    
     var many: Parser<[Result]> {
         
         return curry { [$0] + $1 } <^> self <*> self._many
