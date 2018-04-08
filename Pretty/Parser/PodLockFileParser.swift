@@ -70,6 +70,7 @@ private let indentation = space.followed(by: space)
 
 /// -
 private let hyphon = character("-")
+private let quote = character("\"")
 
 private let leftParent = character("(")
 private let rightParent = character(")")
@@ -84,8 +85,8 @@ private let word = character {
 private let version = leftParent.followed(by: character { $0 != ")" }.many).followed(by: rightParent)
 
 
-private let item = (indentation *> hyphon *> space *> word)
-    <* (space.followed(by: version)).optional <* colon.optional <* newLine
+private let item = (indentation *> hyphon *> space *> quote.optional *> word)
+    <* (space.followed(by: version)).optional <* quote.optional <* colon.optional <* newLine
 
 private let subItem = indentation *> item
 
