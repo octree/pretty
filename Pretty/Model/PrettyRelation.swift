@@ -10,8 +10,6 @@ import Foundation
 
 class PrettyRelation: Codable {
     
-//    var width: Int
-//    var height: Int
     var nodes: [DependencyNode]
     
     init(nodes: [DependencyNode]) {

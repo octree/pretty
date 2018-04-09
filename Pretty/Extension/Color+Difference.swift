@@ -20,6 +20,11 @@ import GLKit
 
 extension OCTColor {
 
+    
+    /// 计算与另一个颜色的差异
+    ///
+    /// - Parameter other: NSColor Or UIColor
+    /// - Returns: CIE2000 颜色差异值
     func colorDifference(_ other: OCTColor) -> Float {
 
         let red = UnsafeMutablePointer<CGFloat>.allocate(capacity: 1)
