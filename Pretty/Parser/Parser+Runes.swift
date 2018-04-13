@@ -28,9 +28,9 @@ func <^><A, B>(lhs: @escaping (A) -> B, rhs: Parser<A>) -> Parser<B> {
 ///   - lhs: a -> m b
 ///   - rhs: m a
 /// - Returns: m b
-func >>-<A, B>(lhs: @escaping (A) -> Parser<B>, rhs: Parser<A>) -> Parser<B> {
+func >>-<A, B>(lhs: Parser<A>, rhs: @escaping (A) -> Parser<B>) -> Parser<B> {
     
-    return rhs.then(lhs: lhs)
+    return lhs.then(lhs: rhs)
 }
 
 
