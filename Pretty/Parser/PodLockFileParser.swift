@@ -79,7 +79,7 @@ private let rightParent = character(")")
 private let pods = string("PODS:\n")
 
 private let word = character {
-    !CharacterSet.whitespacesAndNewlines.contains($0) }.many.map { String($0) }
+    !CharacterSet.whitespacesAndNewlines.contains($0) && $0 != "\"" }.many.map { String($0) }
 
 /// Parse Version Part: `(= 1.2.2)` or `(1.2.3)` or `(whatever)`
 private let version = leftParent.followed(by: character { $0 != ")" }.many).followed(by: rightParent)
