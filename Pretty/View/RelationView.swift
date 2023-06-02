@@ -209,7 +209,8 @@ class RelationView: NSView {
     ///
     /// - Parameter name: 节点名称
     private func updateLine(relate name: String) {
-        
+        var fatherNum = 0
+        var sonNum = 0
         for (key, value) in lineMap {
             
             let components = key.components(separatedBy: "|")
@@ -218,10 +219,12 @@ class RelationView: NSView {
                 value.path = linePath(parent: components.first!, son: components.last!)
 
                 if components.first == currentDraggingItem?.text {
-                    
+                    // 当前Item是父组件，被依赖组件+1
+                    sonNum += 1
                     value.strokeColor = NSColor.red.cgColor
                 } else if (components.last == currentDraggingItem?.text) {
-                    
+                    // 当前Item是子组件，依赖组件+1
+                    fatherNum += 1
                     value.strokeColor = NSColor.blue.cgColor
                 } else {
                     value.strokeColor = itemMap[components.first!]?.backgroundColor?.cgColor
@@ -230,6 +233,10 @@ class RelationView: NSView {
             else {
                 value.isHidden = true
             }
+        }
+        
+        if let item = itemMap[name] {
+            item.depend = "依赖组件数:\(sonNum) 被依赖数:\(fatherNum)"
         }
         
     }

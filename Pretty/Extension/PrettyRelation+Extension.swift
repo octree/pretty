@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let kRelationHorizentalSpacing  =   30
+private let kRelationHorizentalSpacing  =   50
 private let kRelationVerticalSpacing    =   100
 private let kRelationItemHeight         =   28
 private let kRelationItemPerRow         =   6

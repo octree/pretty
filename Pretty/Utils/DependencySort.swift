@@ -51,7 +51,9 @@ func groupPodDependency(_ dependency: [String: [String]]) -> [[String: [String]]
                 names.remove(name)
                 group[name] = dependency[name]
             }
+            debugPrint("name: \(name)")
         }
+        debugPrint("lastDepthNames: \(lastDepthNames)")
         lastDepthNames.append(contentsOf: group.keys)
         groups.append(group)
     }
