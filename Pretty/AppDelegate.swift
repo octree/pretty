@@ -34,6 +34,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        
 //    }
     
+    @IBAction func openDocument(_ sender: Any) {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = true
+        openPanel.canChooseDirectories = false
+        openPanel.allowsMultipleSelection = false
+        
+        if openPanel.runModal() == .OK {
+            if let url = openPanel.url {
+                print("Selected file: \(url.path)")
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTOpenFileNotification) , object: url.path)
+                FileName = url.path
+            }
+        }
+    }
 }
 
 
