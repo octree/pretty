@@ -39,7 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
-        
         if openPanel.runModal() == .OK {
             if let url = openPanel.url {
                 print("Selected file: \(url.path)")
