@@ -61,7 +61,10 @@ extension PrettyRelation {
     
     convenience init(dependency: [String: [String]]) {
         
-        let groups = Array(groupPodDependency(dependency).reversed())
+//        let groups = Array(groupPodDependency(dependency).reversed())
+        let groups = Array(groupPodDependencyReversed(dependency).reversed())
+        
+//        let groups = Array(groupPodDependency(dependency))
 //        let size = preferredSize(groups)
         self.init(nodes: nodesForGroups(groups))
     }
