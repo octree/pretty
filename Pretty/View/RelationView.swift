@@ -50,6 +50,11 @@ class RelationView: NSView {
             currentDraggingItem = item
             lastDragPosition = position
         }
+        else {
+            for (_, value) in lineMap {
+                value.isHidden = true
+            }
+        }
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -61,6 +66,11 @@ class RelationView: NSView {
             
             lastDragPosition = position
             updateLine(relate: item.text)
+        }
+        else {
+            for (_, value) in lineMap {
+                value.isHidden = true
+            }
         }
     }
     
@@ -78,8 +88,8 @@ class RelationView: NSView {
                                    height: Int(item.frame.size.height))
         }
         
-        currentDraggingItem = nil
         updateLine(relate: item.text)
+        currentDraggingItem = nil
     }
 
     
@@ -204,7 +214,7 @@ class RelationView: NSView {
             
             let components = key.components(separatedBy: "|")
             if components.contains(name) {
-                
+                value.isHidden = false
                 value.path = linePath(parent: components.first!, son: components.last!)
 
                 if components.first == currentDraggingItem?.text {
@@ -216,6 +226,9 @@ class RelationView: NSView {
                 } else {
                     value.strokeColor = itemMap[components.first!]?.backgroundColor?.cgColor
                 }
+            }
+            else {
+                value.isHidden = true
             }
         }
         
