@@ -27,6 +27,8 @@ class ViewController: NSViewController {
             
             updateRelationView(filename: FileName)
         }
+        
+        
     }
     
     override func viewDidLayout() {

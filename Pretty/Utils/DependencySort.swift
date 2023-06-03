@@ -68,27 +68,25 @@ func groupPodDependency(_ dependency: [String: [String]]) -> [[String: [String]]
 func groupPodDependencyReversed(_ dependency: [String: [String]]) -> [[String: [String]]] {
     var dependencys = dependency
     var names = Set(dependencys.keys)
-    let reversed = whoIsYourDad(dependency)
-    var lastDepthNames = [String]()
     var groups = [[String: [String]]]()
-    var index = 0
     while names.count > 0 {
-        
         var group = [String: [String]]()
         let copyedNames = names
+        var tempNames = [String]()
         for name in copyedNames {
+            // 如果没有依赖组件，则认为它是一个根组件
             if dependencys[name]?.count == 0 {
+                tempNames.append(name)
                 names.remove(name)
-                dependencys = removeDictionaryKeyAndValueKey(dependencys, name)
-                debugPrint("index: \(index) name:\(name)")
-                group[name] = dependencys[name]
-            }
-            else {
-                debugPrint("index: \(index) name-0:\(name)")
+                group[name] = dependency[name]
             }
         }
         
-        index += 0
+        // 筛选该层级中的所有组件，然后将其移出。这样下一层组件便成为根组件
+        for name in tempNames {
+            dependencys = removeDictionaryKeyAndValueKey(dependencys, name)
+        }
+        
         groups.append(group)
     }
     
@@ -98,12 +96,13 @@ func groupPodDependencyReversed(_ dependency: [String: [String]]) -> [[String: [
 private func removeDictionaryKeyAndValueKey(_ dependency: [String: [String]], _ key: String) -> [String: [String]] {
     var dependencys = dependency
     dependencys.removeValue(forKey: key)
-    dependency.forEach { key, value in
+    let temp = dependencys
+    temp.forEach { key0, value in
         var values = value
         if let index = value.firstIndex(of: key) {
             values.remove(at: index)
         }
-        dependencys[key] = values
+        dependencys[key0] = values
     }
  
     return dependencys

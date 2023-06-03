@@ -47,6 +47,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+    
+    @IBAction func findPodName(_ sender: NSMenuItem) {
+        debugPrint("\(sender.title)")
+    }
+    
 }
 
 
