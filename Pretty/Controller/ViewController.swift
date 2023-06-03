@@ -16,6 +16,7 @@ class ViewController: NSViewController {
     private var treeMode = 0
     private var treeReversed = true
     private var dependency: [String: [String]]?
+    private var searchModuleName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +92,6 @@ class ViewController: NSViewController {
             if let (dependency, _) = PodLockFileParser.parse(Substring(string)) {
                 self.dependency = dependency
                 relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
-                alert(title: "Info", msg: "loaded \(filename)")
             } else {
                 
                 alert(title: "Error", msg: "Parse Error: Wrong Format")
@@ -111,7 +111,6 @@ class ViewController: NSViewController {
             let data = try Data(contentsOf: url)
             let relation = try JSONDecoder().decode(PrettyRelation.self, from: data)
             relationView.prettyRelation = relation
-            alert(title: "Info", msg: "loaded \(filename)")
         } catch {
             
             alert(title: "Error", msg: error.localizedDescription)
@@ -120,7 +119,6 @@ class ViewController: NSViewController {
     
     
     func alert(title: String, msg: String) {
-        
         let alert = NSAlert()
         alert.addButton(withTitle: "Ok")
         alert.messageText = title
@@ -154,5 +152,21 @@ class ViewController: NSViewController {
         if let dependency = dependency {
             relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
         }
+    }
+    
+    
+    @IBAction func searchModule(_ sender: NSSearchField) {
+        debugPrint("\(sender.stringValue)")
+    }
+}
+
+extension ViewController: NSTextFieldDelegate {
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        debugPrint(control.stringValue)
+        if control.stringValue.count > 0 {
+            searchModuleName = control.stringValue
+            relationView.findModule(name: searchModuleName)
+        }
+        return true
     }
 }
