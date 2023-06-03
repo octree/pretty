@@ -13,6 +13,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var scrollView: NSScrollView!
     
     private let relationView = RelationView()
+    private var treeMode = 0
+    private var treeReversed = true
+    private var dependency: [String: [String]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,8 @@ class ViewController: NSViewController {
         scrollView.hasHorizontalScroller = true
         scrollView.documentView = relationView
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleOpenFile(notification:)), name: NSNotification.Name(rawValue: OCTOpenFileNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOpenFile(notification:)), name: NSNotification.Name(rawValue: OCTOpenFileNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(findModule(notification:)), name: NSNotification.Name(rawValue: OCTFindModuleNotification), object: nil)
         
         if FileName.count > 0 {
             
@@ -56,6 +60,18 @@ class ViewController: NSViewController {
         updateRelationView(filename: filename)
     }
     
+    @objc func findModule(notification: Notification) {
+        let alert = NSAlert()
+        alert.addButton(withTitle: "Ok")
+        alert.messageText = "快速找到你的模块"
+        alert.informativeText = "忽略大小写"
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "")
+        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+    }
+    
+    
+    
     func updateRelationView(filename: String) {
         
         view.window?.title = filename
@@ -73,8 +89,8 @@ class ViewController: NSViewController {
             let string = try String(contentsOfFile: filename, encoding: .utf8)
             
             if let (dependency, _) = PodLockFileParser.parse(Substring(string)) {
-                
-                relationView.prettyRelation = PrettyRelation(dependency: dependency)
+                self.dependency = dependency
+                relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
                 alert(title: "Info", msg: "loaded \(filename)")
             } else {
                 
@@ -112,6 +128,31 @@ class ViewController: NSViewController {
         alert.alertStyle = .warning
         alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
     }
-
+    
+    
+    @IBAction func treeMode(_ sender: NSComboBox) {
+        if sender.stringValue == "被依赖树图" {
+            treeMode = 0
+        }
+        else if sender.stringValue == "依赖树图" {
+            treeMode = 1
+        }
+        
+        if let dependency = dependency {
+            relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
+        }
+    }
+    
+    @IBAction func treeReversed(_ sender: NSComboBox) {
+        if sender.stringValue == "正向树" {
+            treeReversed = true
+        }
+        else if sender.stringValue == "逆向树" {
+            treeReversed = false
+        }
+        
+        if let dependency = dependency {
+            relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
+        }
+    }
 }
-

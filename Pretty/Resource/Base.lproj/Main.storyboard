@@ -712,29 +712,76 @@
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNW-5e-bvq">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <clipView key="contentView" id="4c5-ch-9zw">
-                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
+                                    <rect key="frame" x="1" y="1" width="463" height="253"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FIT-Y4-b5v">
-                                            <rect key="frame" x="0.0" y="0.0" width="463" height="253"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <view translatesAutoresizingMaskIntoConstraints="NO" id="FIT-Y4-b5v">
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="238"/>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FIT-Y4-b5v" firstAttribute="top" secondItem="4c5-ch-9zw" secondAttribute="top" constant="15" id="NdC-fH-9BQ"/>
+                                        <constraint firstItem="FIT-Y4-b5v" firstAttribute="leading" secondItem="4c5-ch-9zw" secondAttribute="leading" id="bbE-SO-ccy"/>
+                                        <constraint firstAttribute="trailing" secondItem="FIT-Y4-b5v" secondAttribute="trailing" constant="15" id="eAr-Zb-OQs"/>
+                                        <constraint firstAttribute="bottom" secondItem="FIT-Y4-b5v" secondAttribute="bottom" id="xkx-it-hq4"/>
+                                    </constraints>
                                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Eua-Gt-P78">
-                                    <rect key="frame" x="1" y="253" width="478" height="16"/>
+                                    <rect key="frame" x="1" y="254" width="463" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="yCD-1D-L6O">
-                                    <rect key="frame" x="463" y="1" width="16" height="268"/>
+                                    <rect key="frame" x="464" y="1" width="15" height="253"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-2R-M63">
+                                <rect key="frame" x="364" y="18" width="99" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Gro-ym-59m"/>
+                                    <constraint firstAttribute="width" constant="95" id="o8H-4Z-Vi0"/>
+                                </constraints>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="被依赖树图" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="GEf-wV-auU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <objectValues>
+                                        <string>被依赖树图</string>
+                                        <string>依赖树图</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="treeMode:" target="XfG-lQ-9wD" id="Dye-VO-MAk"/>
+                                </connections>
+                            </comboBox>
+                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ycl-F5-3WS">
+                                <rect key="frame" x="364" y="48" width="99" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Kem-pU-4cR"/>
+                                    <constraint firstAttribute="width" constant="95" id="Lrr-7n-W3H"/>
+                                </constraints>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="正向树" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="0bf-xg-aX1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <objectValues>
+                                        <string>正向树</string>
+                                        <string>逆向树</string>
+                                    </objectValues>
+                                    <connections>
+                                        <action selector="treeReversed:" target="XfG-lQ-9wD" id="pal-We-ZZC"/>
+                                    </connections>
+                                </comboBoxCell>
+                            </comboBox>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mNW-5e-bvq" secondAttribute="trailing" id="3Ue-oY-dKw"/>
+                            <constraint firstAttribute="trailing" secondItem="Cqf-2R-M63" secondAttribute="trailing" constant="20" id="4Rf-rw-yP3"/>
                             <constraint firstItem="mNW-5e-bvq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RBY-b8-50p"/>
+                            <constraint firstAttribute="bottom" secondItem="Cqf-2R-M63" secondAttribute="bottom" constant="20" id="aca-Yy-g0r"/>
+                            <constraint firstAttribute="bottom" secondItem="ycl-F5-3WS" secondAttribute="bottom" constant="50" id="kc5-gD-h7w"/>
+                            <constraint firstAttribute="trailing" secondItem="ycl-F5-3WS" secondAttribute="trailing" constant="20" id="lYZ-FR-65f"/>
                             <constraint firstItem="mNW-5e-bvq" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="trV-Eq-Ct6"/>
                             <constraint firstAttribute="bottom" secondItem="mNW-5e-bvq" secondAttribute="bottom" id="uRF-ER-BG1"/>
                         </constraints>

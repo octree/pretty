@@ -9,6 +9,7 @@
 import Cocoa
 
 let OCTOpenFileNotification = "OCTOpenFileNotification"
+let OCTFindModuleNotification = "OCTFindModuleNotification"
 public var FileName = ""
 
 @NSApplicationMain
@@ -49,8 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func findPodName(_ sender: NSMenuItem) {
-        debugPrint("\(sender.title)")
+        NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTFindModuleNotification), object: nil)
     }
+    
     
 }
 

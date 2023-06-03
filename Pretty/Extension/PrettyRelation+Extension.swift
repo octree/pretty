@@ -59,11 +59,14 @@ private func nodesForGroups(_ groups: [[String: [String]]]) -> [DependencyNode] 
 
 extension PrettyRelation {
     
-    convenience init(dependency: [String: [String]]) {
-        
-//        let groups = Array(groupPodDependency(dependency).reversed())
-        let groups = Array(groupPodDependencyReversed(dependency).reversed())
-        
+    convenience init(dependency: [String: [String]], treeMode: Int, treeReversed: Bool) {
+        var groups = [[String: [String]]]()
+        if treeMode == 0 {
+            groups = Array(treeReversed ? groupPodDependencyReversed(dependency).reversed() : groupPodDependencyReversed(dependency))
+        }
+        else if treeMode == 1 {
+            groups = Array(treeReversed ? groupPodDependency(dependency).reversed() : groupPodDependency(dependency))
+        }
 //        let groups = Array(groupPodDependency(dependency))
 //        let size = preferredSize(groups)
         self.init(nodes: nodesForGroups(groups))
