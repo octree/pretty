@@ -736,75 +736,117 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-2R-M63">
-                                <rect key="frame" x="564" y="18" width="99" height="23"/>
+                            <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqG-RW-4h6">
+                                <rect key="frame" x="530" y="20" width="130" height="96"/>
+                                <subviews>
+                                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-2R-M63">
+                                        <rect key="frame" x="26" y="-2" width="107" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Gro-ym-59m"/>
+                                        </constraints>
+                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="被依赖树图" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="GEf-wV-auU">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <objectValues>
+                                                <string>被依赖树图</string>
+                                                <string>依赖树图</string>
+                                            </objectValues>
+                                        </comboBoxCell>
+                                        <connections>
+                                            <action selector="treeMode:" target="XfG-lQ-9wD" id="Dye-VO-MAk"/>
+                                        </connections>
+                                    </comboBox>
+                                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ycl-F5-3WS">
+                                        <rect key="frame" x="53" y="18" width="80" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Kem-pU-4cR"/>
+                                        </constraints>
+                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="正向树" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="0bf-xg-aX1">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <objectValues>
+                                                <string>正向树</string>
+                                                <string>逆向树</string>
+                                            </objectValues>
+                                            <connections>
+                                                <action selector="treeReversed:" target="XfG-lQ-9wD" id="pal-We-ZZC"/>
+                                            </connections>
+                                        </comboBoxCell>
+                                    </comboBox>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHE-Un-1Ql">
+                                        <rect key="frame" x="2" y="40" width="128" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="YMY-aT-91W"/>
+                                        </constraints>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="输入模块名" usesSingleLineMode="YES" bezelStyle="round" id="5cb-vm-BbI">
+                                            <font key="font" metaFont="cellTitle"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </searchFieldCell>
+                                        <connections>
+                                            <action selector="searchModule:" target="XfG-lQ-9wD" id="WB8-kG-AUd"/>
+                                            <outlet property="delegate" destination="XfG-lQ-9wD" id="QiW-wt-yd7"/>
+                                        </connections>
+                                    </searchField>
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZhI-dW-Opg">
+                                        <rect key="frame" x="107" y="56" width="26" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="3t9-Tn-fw0"/>
+                                            <constraint firstAttribute="height" constant="30" id="GZz-L0-OfM"/>
+                                        </constraints>
+                                        <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.20000000000000001" maxValue="3" doubleValue="1" id="0dl-yJ-6PJ"/>
+                                        <connections>
+                                            <action selector="viewScale:" target="XfG-lQ-9wD" id="Byd-c9-PL3"/>
+                                        </connections>
+                                    </stepper>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WaG-un-rFe">
+                                        <rect key="frame" x="3" y="68" width="104" height="15"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="缩放比例：1" placeholderString="缩放比例：1" id="jRr-zU-NWQ">
+                                            <font key="font" metaFont="system" size="12"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Gro-ym-59m"/>
-                                    <constraint firstAttribute="width" constant="95" id="o8H-4Z-Vi0"/>
+                                    <constraint firstItem="WaG-un-rFe" firstAttribute="leading" secondItem="zqG-RW-4h6" secondAttribute="leading" constant="5" id="2Bm-9H-7BW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ycl-F5-3WS" secondAttribute="trailing" id="6eB-pP-VyS"/>
+                                    <constraint firstAttribute="height" constant="96" id="9QH-kq-CAB"/>
+                                    <constraint firstItem="ZhI-dW-Opg" firstAttribute="leading" secondItem="WaG-un-rFe" secondAttribute="trailing" constant="5" id="CGS-LX-jKi"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cqf-2R-M63" secondAttribute="bottom" id="Cie-b2-P9S"/>
+                                    <constraint firstItem="BHE-Un-1Ql" firstAttribute="leading" secondItem="zqG-RW-4h6" secondAttribute="leading" constant="2" id="EqQ-cm-LiO"/>
+                                    <constraint firstAttribute="trailing" secondItem="BHE-Un-1Ql" secondAttribute="trailing" id="II5-gy-uvz"/>
+                                    <constraint firstItem="Cqf-2R-M63" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zqG-RW-4h6" secondAttribute="leading" constant="20" symbolic="YES" id="PAJ-K7-c8c"/>
+                                    <constraint firstItem="WaG-un-rFe" firstAttribute="centerY" secondItem="ZhI-dW-Opg" secondAttribute="centerY" id="T6i-KV-V8I"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZhI-dW-Opg" secondAttribute="trailing" id="XAe-ct-B5e"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cqf-2R-M63" secondAttribute="trailing" id="fQ1-9j-a5c"/>
+                                    <constraint firstItem="ycl-F5-3WS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zqG-RW-4h6" secondAttribute="leading" constant="20" symbolic="YES" id="gRL-SF-ggB"/>
+                                    <constraint firstItem="Cqf-2R-M63" firstAttribute="top" secondItem="ZhI-dW-Opg" secondAttribute="bottom" constant="40" id="qVG-v7-6xH"/>
+                                    <constraint firstAttribute="width" constant="130" id="zF4-3z-v43"/>
+                                    <constraint firstItem="Cqf-2R-M63" firstAttribute="top" secondItem="BHE-Un-1Ql" secondAttribute="bottom" constant="20" id="zUA-MN-I9W"/>
+                                    <constraint firstItem="Cqf-2R-M63" firstAttribute="top" secondItem="ycl-F5-3WS" secondAttribute="bottom" id="zqO-MV-the"/>
                                 </constraints>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="被依赖树图" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="GEf-wV-auU">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <objectValues>
-                                        <string>被依赖树图</string>
-                                        <string>依赖树图</string>
-                                    </objectValues>
-                                </comboBoxCell>
-                                <connections>
-                                    <action selector="treeMode:" target="XfG-lQ-9wD" id="Dye-VO-MAk"/>
-                                </connections>
-                            </comboBox>
-                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ycl-F5-3WS">
-                                <rect key="frame" x="564" y="48" width="99" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Kem-pU-4cR"/>
-                                    <constraint firstAttribute="width" constant="95" id="Lrr-7n-W3H"/>
-                                </constraints>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="正向树" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="0bf-xg-aX1">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <objectValues>
-                                        <string>正向树</string>
-                                        <string>逆向树</string>
-                                    </objectValues>
-                                    <connections>
-                                        <action selector="treeReversed:" target="XfG-lQ-9wD" id="pal-We-ZZC"/>
-                                    </connections>
-                                </comboBoxCell>
-                            </comboBox>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHE-Un-1Ql">
-                                <rect key="frame" x="540" y="80" width="120" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Ih4-ZV-atu"/>
-                                    <constraint firstAttribute="height" constant="22" id="YMY-aT-91W"/>
-                                </constraints>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="输入模块名" usesSingleLineMode="YES" bezelStyle="round" id="5cb-vm-BbI">
-                                    <font key="font" metaFont="system" size="12"/>
-                                    <color key="textColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <action selector="searchModule:" target="XfG-lQ-9wD" id="WB8-kG-AUd"/>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="QiW-wt-yd7"/>
-                                </connections>
-                            </searchField>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="keyPath">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mNW-5e-bvq" secondAttribute="trailing" id="3Ue-oY-dKw"/>
-                            <constraint firstAttribute="trailing" secondItem="Cqf-2R-M63" secondAttribute="trailing" constant="20" id="4Rf-rw-yP3"/>
-                            <constraint firstAttribute="bottom" secondItem="BHE-Un-1Ql" secondAttribute="bottom" constant="80" id="MOP-Wd-eLh"/>
+                            <constraint firstAttribute="trailing" secondItem="zqG-RW-4h6" secondAttribute="trailing" constant="20" id="E5e-an-YzM"/>
+                            <constraint firstAttribute="bottom" secondItem="zqG-RW-4h6" secondAttribute="bottom" constant="20" id="MOt-bY-KAE"/>
                             <constraint firstItem="mNW-5e-bvq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RBY-b8-50p"/>
-                            <constraint firstAttribute="bottom" secondItem="Cqf-2R-M63" secondAttribute="bottom" constant="20" id="aca-Yy-g0r"/>
-                            <constraint firstAttribute="bottom" secondItem="ycl-F5-3WS" secondAttribute="bottom" constant="50" id="kc5-gD-h7w"/>
-                            <constraint firstAttribute="trailing" secondItem="ycl-F5-3WS" secondAttribute="trailing" constant="20" id="lYZ-FR-65f"/>
                             <constraint firstItem="mNW-5e-bvq" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="trV-Eq-Ct6"/>
                             <constraint firstAttribute="bottom" secondItem="mNW-5e-bvq" secondAttribute="bottom" id="uRF-ER-BG1"/>
-                            <constraint firstAttribute="trailing" secondItem="BHE-Un-1Ql" secondAttribute="trailing" constant="20" id="zrP-SK-7TJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="abilityView" destination="zqG-RW-4h6" id="izw-TS-92m"/>
+                        <outlet property="maginficationLabel" destination="WaG-un-rFe" id="imG-dT-3Ip"/>
                         <outlet property="scrollView" destination="mNW-5e-bvq" id="CPo-tA-Kdv"/>
                     </connections>
                 </viewController>

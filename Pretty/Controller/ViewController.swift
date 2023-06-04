@@ -11,12 +11,15 @@ import Cocoa
 class ViewController: NSViewController {
     
     @IBOutlet weak var scrollView: NSScrollView!
+    @IBOutlet weak var maginficationLabel: NSTextField!
+    @IBOutlet weak var abilityView: NSView!
     
     private let relationView = RelationView()
     private var treeMode = 0
     private var treeReversed = true
     private var dependency: [String: [String]]?
     private var searchModuleName = ""
+    private var magnification = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,13 @@ class ViewController: NSViewController {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = true
         scrollView.documentView = relationView
+        scrollView.maxMagnification = 3
+        scrollView.minMagnification = 0.2
+        scrollView.magnification = magnification
+        
+        abilityView.layer?.backgroundColor = NSColor.selectedContentBackgroundColor.cgColor
+        abilityView.layer?.cornerRadius = 10
+        abilityView.alphaValue = 0.6
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleOpenFile(notification:)), name: NSNotification.Name(rawValue: OCTOpenFileNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(findModule(notification:)), name: NSNotification.Name(rawValue: OCTFindModuleNotification), object: nil)
@@ -158,6 +168,13 @@ class ViewController: NSViewController {
     @IBAction func searchModule(_ sender: NSSearchField) {
         debugPrint("\(sender.stringValue)")
     }
+    
+
+    @IBAction func viewScale(_ sender: NSStepper) {
+        maginficationLabel.stringValue = "缩放比例：\(sender.floatValue)"
+        scrollView.magnification = CGFloat(sender.floatValue)
+    }
+    
 }
 
 extension ViewController: NSTextFieldDelegate {
