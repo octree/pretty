@@ -36,7 +36,6 @@ class ViewController: NSViewController {
         abilityView.alphaValue = 0.6
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleOpenFile(notification:)), name: NSNotification.Name(rawValue: OCTOpenFileNotification), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(findModule(notification:)), name: NSNotification.Name(rawValue: OCTFindModuleNotification), object: nil)
         
         if FileName.count > 0 {
             
@@ -71,20 +70,8 @@ class ViewController: NSViewController {
         updateRelationView(filename: filename)
     }
     
-    @objc func findModule(notification: Notification) {
-        let alert = NSAlert()
-        alert.addButton(withTitle: "Ok")
-        alert.messageText = "快速找到你的模块"
-        alert.informativeText = "忽略大小写"
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: "")
-        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
-    }
-    
-    
     
     func updateRelationView(filename: String) {
-        
         view.window?.title = filename
         if filename.hasSuffix(".lock") {
             updateWithLockFile(filename: filename)
@@ -94,35 +81,27 @@ class ViewController: NSViewController {
     }
     
     func updateWithLockFile(filename: String) {
-        
         do {
-            
             let string = try String(contentsOfFile: filename, encoding: .utf8)
-            
             if let (dependency, _) = PodLockFileParser.parse(Substring(string)) {
                 self.dependency = dependency
                 relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
             } else {
-                
                 alert(title: "Error", msg: "Parse Error: Wrong Format")
             }
         } catch {
-            
             alert(title: "Error", msg: error.localizedDescription)
         }
     }
     
     
     func updateWithPrettyFile(filename: String) {
-        
         do {
-            
             let url = URL(fileURLWithPath: filename)
             let data = try Data(contentsOf: url)
             let relation = try JSONDecoder().decode(PrettyRelation.self, from: data)
             relationView.prettyRelation = relation
         } catch {
-            
             alert(title: "Error", msg: error.localizedDescription)
         }
     }

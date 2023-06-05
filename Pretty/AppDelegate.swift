@@ -48,12 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    
-    @IBAction func findPodName(_ sender: NSMenuItem) {
-        NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTFindModuleNotification), object: nil)
-    }
-    
-    
+
 }
 
 
