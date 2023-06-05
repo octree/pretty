@@ -37,12 +37,12 @@ class ViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleOpenFile(notification:)), name: NSNotification.Name(rawValue: OCTOpenFileNotification), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleSaveFile(notification:)), name: NSNotification.Name(rawValue: OCTSaveFileNotification), object: nil)
+        
+        
         if FileName.count > 0 {
-            
             updateRelationView(filename: FileName)
         }
-        
-        
     }
     
     override func viewDidLayout() {
@@ -61,21 +61,11 @@ class ViewController: NSViewController {
     }
     
     
-    @objc func handleOpenFile(notification: Notification) {
-        
-        guard let filename = notification.object as? String else {
-            return
-        }
-        
-        updateRelationView(filename: filename)
-    }
-    
-    
     func updateRelationView(filename: String) {
         view.window?.title = filename
         if filename.hasSuffix(".lock") {
             updateWithLockFile(filename: filename)
-        } else {
+        } else if filename.hasSuffix(".json")  {
             updateWithPrettyFile(filename: filename)
         }
     }
@@ -98,9 +88,15 @@ class ViewController: NSViewController {
     func updateWithPrettyFile(filename: String) {
         do {
             let url = URL(fileURLWithPath: filename)
-            let data = try Data(contentsOf: url)
-            let relation = try JSONDecoder().decode(PrettyRelation.self, from: data)
-            relationView.prettyRelation = relation
+            guard let data = try? Data(contentsOf: url), let dependency = try? JSONSerialization.jsonObject(with: data) as? [String: [String]] else {
+                alert(title: "Error", msg: "数据格式不对，请检查")
+                return
+            }
+            
+            if let dependency = dependency {
+                self.dependency = dependency
+                relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
+            }
         } catch {
             alert(title: "Error", msg: error.localizedDescription)
         }
@@ -154,6 +150,48 @@ class ViewController: NSViewController {
         scrollView.magnification = CGFloat(sender.floatValue)
     }
     
+}
+
+extension ViewController {
+    @objc func handleOpenFile(notification: Notification) {
+        guard let filename = notification.object as? String else {
+            return
+        }
+        
+        updateRelationView(filename: filename)
+    }
+    
+    @objc func handleSaveFile(notification: Notification) {
+        if FileName.hasSuffix(".lock") == false {
+            return
+        }
+        
+        var filename = "dependency.json"
+        let temp1 = FileName.components(separatedBy: ".lock")
+        if temp1.count == 2 {
+            let temp2 = temp1.first
+            if let temp3 = temp2?.components(separatedBy: "/"), let temp4 = temp3.last {
+                filename = temp4
+            }
+        }
+        
+        let panel = NSSavePanel()
+        panel.title = "保存文件"
+        panel.message = "请选择文件保存地址"
+        panel.directoryURL = URL(string: "\(NSHomeDirectory())/Downloads")
+        panel.nameFieldStringValue = "\(filename)_Dependency.json"
+        panel.allowsOtherFileTypes = true
+        panel.isExtensionHidden = false
+        panel.canCreateDirectories = true
+        panel.begin { (response) in
+            if response == .OK {
+                if let url = panel.url, let dependency = self.dependency {
+                    let data = try? JSONSerialization.data(withJSONObject: dependency)
+                    _ = try? data?.write(to: url)
+                }
+            }
+        }
+    }
 }
 
 extension ViewController: NSTextFieldDelegate {

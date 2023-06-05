@@ -28,9 +28,13 @@
 - [x] 解析 Podfile.lock
 - [x] 根据节点背景颜色，使用合适的字体颜色
 - [x] 根据节点深度分组
+- [x] 支持搜索组件功能-by harry
+- [x] 支持点击只显示选中组件依赖树及数量 -by harry
+- [x] 支持最深依赖树/被依赖树分组能力-by harry
+- [x] 支持缩放能力 -by harry
 - [ ] 学习 `macos` 开发
-- [ ] 保存依赖图文件
-- [ ] 打开依赖图文件
+- [x] 保存依赖图文件(导出为 json格式) -by harry
+- [x] 打开依赖图文件（json文件） -by harry
 
 ## License
 
