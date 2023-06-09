@@ -59,9 +59,11 @@ class ViewController: NSViewController {
                                     width: max(size.width, parentSize.width),
                                     height: max(size.height, parentSize.height))
     }
-    
-    
-    func updateRelationView(filename: String) {
+}
+
+// MARK: 文件处理相关代码，私有
+extension ViewController {
+    private func updateRelationView(filename: String) {
         view.window?.title = filename
         if filename.hasSuffix(".lock") {
             updateWithLockFile(filename: filename)
@@ -70,7 +72,7 @@ class ViewController: NSViewController {
         }
     }
     
-    func updateWithLockFile(filename: String) {
+    private func updateWithLockFile(filename: String) {
         do {
             let string = try String(contentsOfFile: filename, encoding: .utf8)
             if let (dependency, _) = PodLockFileParser.parse(Substring(string)) {
@@ -85,25 +87,23 @@ class ViewController: NSViewController {
     }
     
     
-    func updateWithPrettyFile(filename: String) {
-        do {
-            let url = URL(fileURLWithPath: filename)
-            guard let data = try? Data(contentsOf: url), let dependency = try? JSONSerialization.jsonObject(with: data) as? [String: [String]] else {
-                alert(title: "Error", msg: "数据格式不对，请检查")
-                return
-            }
-            
-            if let dependency = dependency {
-                self.dependency = dependency
-                relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
-            }
-        } catch {
-            alert(title: "Error", msg: error.localizedDescription)
+    private func updateWithPrettyFile(filename: String) {
+        let url = URL(fileURLWithPath: filename)
+        guard let data = try? Data(contentsOf: url), let dependency = try? JSONSerialization.jsonObject(with: data) as? [String: [String]] else {
+            alert(title: "Error", msg: "数据格式不对，请检查")
+            return
+        }
+        
+        if let dependency = dependency {
+            self.dependency = dependency
+            relationView.prettyRelation = PrettyRelation(dependency: dependency, treeMode: treeMode, treeReversed: treeReversed)
+        }
+        else {
+            alert(title: "Error", msg: "数据格式不对，请检查")
         }
     }
     
-    
-    func alert(title: String, msg: String) {
+    private func alert(title: String, msg: String) {
         let alert = NSAlert()
         alert.addButton(withTitle: "Ok")
         alert.messageText = title
@@ -111,8 +111,10 @@ class ViewController: NSViewController {
         alert.alertStyle = .warning
         alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
     }
-    
-    
+}
+
+// MARK: Storyboard相关代码
+extension ViewController {
     @IBAction func treeMode(_ sender: NSComboBox) {
         if sender.stringValue == "被依赖树图" {
             treeMode = 0
@@ -149,9 +151,9 @@ class ViewController: NSViewController {
         maginficationLabel.stringValue = "缩放比例：\(sender.floatValue)"
         scrollView.magnification = CGFloat(sender.floatValue)
     }
-    
 }
 
+// MARK: 通知相关代码
 extension ViewController {
     @objc func handleOpenFile(notification: Notification) {
         guard let filename = notification.object as? String else {
@@ -194,6 +196,7 @@ extension ViewController {
     }
 }
 
+// MARK: 代理相关代码
 extension ViewController: NSTextFieldDelegate {
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         debugPrint(control.stringValue)
