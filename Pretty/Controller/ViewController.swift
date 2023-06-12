@@ -67,7 +67,8 @@ extension ViewController {
         view.window?.title = filename
         if filename.hasSuffix(".lock") {
             updateWithLockFile(filename: filename)
-        } else if filename.hasSuffix(".json")  {
+        }
+        else if filename.hasSuffix(".json")  {
             updateWithPrettyFile(filename: filename)
         }
     }
