@@ -18,6 +18,8 @@ class RelationView: NSView {
     private var itemMap = [String: RelationItemView]()
     private var nodeMap = [String: DependencyNode]()
     private var currentDraggingItem: RelationItemView? = nil
+    
+    private var lineHidden: Bool = false
 
     private var lastDragPosition = NSPoint(x: 0, y: 0)
     
@@ -51,8 +53,9 @@ class RelationView: NSView {
             lastDragPosition = position
         }
         else {
+            lineHidden = !lineHidden
             for (_, value) in lineMap {
-                value.isHidden = true
+                value.isHidden = lineHidden
             }
         }
     }
@@ -248,7 +251,7 @@ class RelationView: NSView {
         }
         
         if let item = itemMap[name] {
-            item.depend = "依赖组件数:\(sonNum) 被依赖数:\(fatherNum)"
+            item.depend = "依赖数:\(sonNum) 被依赖数:\(fatherNum)"
         }
         
     }

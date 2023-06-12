@@ -15,8 +15,7 @@ private let kRelationItemPerRow         =   6
 private let kRelationViewPadding        =   40
 
 private func widthForItem(_ text: String) -> Int {
-    
-    return 10 + 9 * text.count
+    return max(10 + 9 * text.count, 120)
 }
 
 
