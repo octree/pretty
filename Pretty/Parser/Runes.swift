@@ -22,6 +22,9 @@ precedencegroup RunesApplicativePrecedence {
     lowerThan: NilCoalescingPrecedence
 }
 
+/*
+ precedencegroup是Swift中用于定义运算符优先级的关键字。它允许您定义一个新的优先级组，该组指定了与其他优先级组的相对优先级关系。例如，您可以定义一个新的优先级组，它的优先级高于加法优先级组，但低于乘法优先级组。
+ */
 precedencegroup RunesApplicativeSequencePrecedence {
     associativity: left
     higherThan: RunesApplicativePrecedence
@@ -46,6 +49,8 @@ infix operator <*> : RunesApplicativePrecedence
  sequence actions, discarding right (value of the second argument)
  Expected function type: `f a -> f b -> f a`
  Haskell `infixl 4`
+ 
+ 定义了一个名为 <* 的自定义中缀运算符，并将其与RunesApplicativeSequencePrecedence优先级组相关联
  */
 infix operator <* : RunesApplicativeSequencePrecedence
 

@@ -8,15 +8,14 @@
 
 import Foundation
 
-private let kRelationHorizentalSpacing  =   30
+private let kRelationHorizentalSpacing  =   50
 private let kRelationVerticalSpacing    =   100
 private let kRelationItemHeight         =   28
 private let kRelationItemPerRow         =   6
 private let kRelationViewPadding        =   40
 
 private func widthForItem(_ text: String) -> Int {
-    
-    return 10 + 9 * text.count
+    return max(10 + 9 * text.count, 120)
 }
 
 
@@ -59,9 +58,15 @@ private func nodesForGroups(_ groups: [[String: [String]]]) -> [DependencyNode] 
 
 extension PrettyRelation {
     
-    convenience init(dependency: [String: [String]]) {
-        
-        let groups = Array(groupPodDependency(dependency).reversed())
+    convenience init(dependency: [String: [String]], treeMode: Int, treeReversed: Bool) {
+        var groups = [[String: [String]]]()
+        if treeMode == 0 {
+            groups = Array(treeReversed ? groupPodDependencyReversed(dependency).reversed() : groupPodDependencyReversed(dependency))
+        }
+        else if treeMode == 1 {
+            groups = Array(treeReversed ? groupPodDependency(dependency).reversed() : groupPodDependency(dependency))
+        }
+//        let groups = Array(groupPodDependency(dependency))
 //        let size = preferredSize(groups)
         self.init(nodes: nodesForGroups(groups))
     }

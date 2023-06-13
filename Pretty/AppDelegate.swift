@@ -9,6 +9,7 @@
 import Cocoa
 
 let OCTOpenFileNotification = "OCTOpenFileNotification"
+let OCTSaveFileNotification = "OCTSaveFileNotification"
 public var FileName = ""
 
 @NSApplicationMain
@@ -23,9 +24,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
-        
-        NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTOpenFileNotification) , object: filename)
         FileName = filename
+        NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTOpenFileNotification) , object: filename)
         return true
     }
 //    
@@ -34,6 +34,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        
 //    }
     
+    @IBAction func openDocument(_ sender: Any) {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = true
+        openPanel.canChooseDirectories = false
+        openPanel.allowsMultipleSelection = false
+        if openPanel.runModal() == .OK {
+            if let url = openPanel.url {
+                FileName = url.path
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTOpenFileNotification) , object: url.path)
+            }
+        }
+    }
+
+    
+    @IBAction func saveDepencyTreeFile(_ sender: Any) {
+        NotificationCenter.default.post(name:NSNotification.Name(rawValue: OCTSaveFileNotification) , object: nil)
+    }
 }
 
 

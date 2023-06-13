@@ -15,6 +15,11 @@ class RelationItemView: NSView {
             label.stringValue = text
         }
     }
+    var depend = "" {
+        didSet {
+            dependLabel.stringValue = depend
+        }
+    }
     private(set) var label: NSTextField = {
         let textfield = NSTextField()
         textfield.isEditable = false
@@ -24,10 +29,21 @@ class RelationItemView: NSView {
         return textfield
     }()
     
+    private(set) var dependLabel: NSTextField = {
+        let textfield = NSTextField()
+        textfield.isEditable = false
+        textfield.textColor = .white
+        textfield.alignment = .center
+        textfield.font = NSFont.systemFont(ofSize: 12)
+        textfield.isBordered = false
+        return textfield
+    }()
+    
     var backgroundColor: NSColor? {
         didSet {
             layer?.backgroundColor = backgroundColor?.cgColor
             label.backgroundColor = backgroundColor
+            dependLabel.backgroundColor = backgroundColor
         }
     }
     
@@ -35,6 +51,7 @@ class RelationItemView: NSView {
         super.init(frame: frameRect)
         self.text = text
         addSubview(label)
+        addSubview(dependLabel)
         label.stringValue = text
         wantsLayer = true
         layer?.cornerRadius = 10
@@ -51,7 +68,8 @@ class RelationItemView: NSView {
     
     override func layout() {
         super.layout()
-        label.frame = bounds.insetBy(dx: 5, dy: 5)
+        label.frame = CGRect(x: 0, y: 20, width: frame.width, height: 20)
+        dependLabel.frame = CGRect(x: 0, y: 6, width: frame.width, height: 14)
     }
     
     var center: NSPoint {

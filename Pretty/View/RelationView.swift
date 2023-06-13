@@ -18,6 +18,8 @@ class RelationView: NSView {
     private var itemMap = [String: RelationItemView]()
     private var nodeMap = [String: DependencyNode]()
     private var currentDraggingItem: RelationItemView? = nil
+    
+    private var lineHidden: Bool = false
 
     private var lastDragPosition = NSPoint(x: 0, y: 0)
     
@@ -50,6 +52,12 @@ class RelationView: NSView {
             currentDraggingItem = item
             lastDragPosition = position
         }
+        else {
+            lineHidden = !lineHidden
+            for (_, value) in lineMap {
+                value.isHidden = lineHidden
+            }
+        }
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -61,6 +69,11 @@ class RelationView: NSView {
             
             lastDragPosition = position
             updateLine(relate: item.text)
+        }
+        else {
+            for (_, value) in lineMap {
+                value.isHidden = true
+            }
         }
     }
     
@@ -78,10 +91,22 @@ class RelationView: NSView {
                                    height: Int(item.frame.size.height))
         }
         
-        currentDraggingItem = nil
         updateLine(relate: item.text)
+        currentDraggingItem = nil
     }
 
+    func findModule(name: String) {
+        for key in nodeMap.keys where key.lowercased().contains(name.lowercased()) {
+            updateLine(relate: key)
+            currentDraggingItem = nil
+            
+            if let node = nodeMap[key] {
+                self.scroll(NSPoint(x: Double(node.frame.x + node.frame.width) - (NSScreen.main?.frame.width ?? 600) / 2, y: Double(node.frame.y + node.frame.height) - (NSScreen.main?.frame.height ?? 400) / 2))
+            }
+            
+            break
+        }
+    }
     
     //    MARK: Private Method
     
@@ -199,24 +224,34 @@ class RelationView: NSView {
     ///
     /// - Parameter name: 节点名称
     private func updateLine(relate name: String) {
-        
+        var fatherNum = 0
+        var sonNum = 0
         for (key, value) in lineMap {
             
             let components = key.components(separatedBy: "|")
             if components.contains(name) {
-                
+                value.isHidden = false
                 value.path = linePath(parent: components.first!, son: components.last!)
 
-                if components.first == currentDraggingItem?.text {
-                    
+                if components.first == name {
+                    // 当前Item是父组件，被依赖组件+1
+                    sonNum += 1
                     value.strokeColor = NSColor.red.cgColor
-                } else if (components.last == currentDraggingItem?.text) {
-                    
+                } else if (components.last == name) {
+                    // 当前Item是子组件，依赖组件+1
+                    fatherNum += 1
                     value.strokeColor = NSColor.blue.cgColor
                 } else {
                     value.strokeColor = itemMap[components.first!]?.backgroundColor?.cgColor
                 }
             }
+            else {
+                value.isHidden = true
+            }
+        }
+        
+        if let item = itemMap[name] {
+            item.depend = "依赖数:\(sonNum) 被依赖数:\(fatherNum)"
         }
         
     }

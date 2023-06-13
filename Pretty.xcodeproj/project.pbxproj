@@ -122,6 +122,9 @@
 		C2756DF120765C8100FF160B /* Pretty */ = {
 			isa = PBXGroup;
 			children = (
+				C2756DF220765C8100FF160B /* AppDelegate.swift */,
+				C2756DFB20765C8200FF160B /* Info.plist */,
+				C2756DFC20765C8200FF160B /* Pretty.entitlements */,
 				C2D8BC08207722160093FC8E /* Resource */,
 				C2D8BBFE20771FF80093FC8E /* Extension */,
 				C2756E0220765CBA00FF160B /* RandomColors */,
@@ -130,9 +133,6 @@
 				C253827B207681CA008BDB09 /* Model */,
 				C2D8BC07207721D90093FC8E /* View */,
 				C2D8BC09207722260093FC8E /* Controller */,
-				C2756DF220765C8100FF160B /* AppDelegate.swift */,
-				C2756DFB20765C8200FF160B /* Info.plist */,
-				C2756DFC20765C8200FF160B /* Pretty.entitlements */,
 			);
 			path = Pretty;
 			sourceTree = "<group>";
@@ -434,15 +434,19 @@
 				CODE_SIGN_ENTITLEMENTS = Pretty/Pretty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7A5GV3DH33;
+				CURRENT_PROJECT_VERSION = 1000;
+				DEVELOPMENT_TEAM = TKRM4J3XJV;
 				INFOPLIST_FILE = Pretty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.octree.Pretty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				SYMROOT = "$(PROJECT_DIR)/build";
 			};
 			name = Debug;
 		};
@@ -453,15 +457,19 @@
 				CODE_SIGN_ENTITLEMENTS = Pretty/Pretty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7A5GV3DH33;
+				CURRENT_PROJECT_VERSION = 1000;
+				DEVELOPMENT_TEAM = TKRM4J3XJV;
 				INFOPLIST_FILE = Pretty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.octree.Pretty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				SYMROOT = "$(PROJECT_DIR)/build";
 			};
 			name = Release;
 		};
